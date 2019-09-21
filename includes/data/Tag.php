@@ -20,17 +20,13 @@ class Tag implements Item
         $this->slug = $slug;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getSlug()
     {
         return $this->slug;
     }
 
-    /**
-     * @param mixed $slug
-     */
+
     public function setSlug($slug)
     {
         $this->slug = $slug;
@@ -39,12 +35,12 @@ class Tag implements Item
 
     public function setId($id)
     {
-        $this->id=$id;
+        $this->id = $id;
     }
 
     public function setTitle($title)
     {
-        $this->title=$title;
+        $this->title = $title;
     }
 
     public function getId()
