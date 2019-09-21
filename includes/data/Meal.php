@@ -1,7 +1,7 @@
 <?php
 
 
-class Dish implements Item
+class Meal implements Item
 {
     private $id;
     private $title;
@@ -9,20 +9,20 @@ class Dish implements Item
     private $status;
     private $slug;
     private $tags = array();
-    private $categories = array();
+    private $categoryId;
     private $ingredient = array();
 
     /**
-     * Dish constructor.
+     * Meal constructor.
      * @param $id
      * @param $title
      * @param $description
      * @param $status
      * @param array $tags
-     * @param array $categories
+     * @param array $categoryId
      * @param array $ingredient
      */
-    public function __construct($id, $title, $description, $status, $slug, array $tags, array $categories, array $ingredient)
+    public function __construct($id, $title, $description, $status, $slug, array $tags, $categoryId, array $ingredient)
     {
         $this->id = $id;
         $this->title = $title;
@@ -30,7 +30,7 @@ class Dish implements Item
         $this->status = $status;
         $this->slug = $slug;
         $this->tags = $tags;
-        $this->categories = $categories;
+        $this->categoryId = $categoryId;
         $this->ingredient = $ingredient;
 
     }
@@ -54,17 +54,17 @@ class Dish implements Item
     /**
      * @return array
      */
-    public function getCategories()
+    public function getCategoryId()
     {
-        return $this->categories;
+        return $this->categorieId;
     }
 
     /**
      * @param array $categories
      */
-    public function setCategories($categories)
+    public function setCategoryID($categoryId)
     {
-        $this->categories = $categories;
+        $this->categoryId = $categoryId;
     }
 
     /**
