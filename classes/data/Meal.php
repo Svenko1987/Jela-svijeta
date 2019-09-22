@@ -9,7 +9,7 @@ class Meal implements Item
     private $status;
     private $slug;
     private $tags = array();
-    private $categoryId;
+    private $category;
     private $ingredient = array();
 
     /**
@@ -19,10 +19,10 @@ class Meal implements Item
      * @param $description
      * @param $status
      * @param array $tags
-     * @param array $categoryId
+     * @param array $category
      * @param array $ingredient
      */
-    public function __construct($id, $title, $description, $status, $slug, array $tags, $categoryId, array $ingredient)
+    public function __construct($id, $title, $description, $status, $slug, array $tags, $category, array $ingredient)
     {
         $this->id = $id;
         $this->title = $title;
@@ -30,7 +30,7 @@ class Meal implements Item
         $this->status = $status;
         $this->slug = $slug;
         $this->tags = $tags;
-        $this->categoryId = $categoryId;
+        $this->category = $category;
         $this->ingredient = $ingredient;
 
     }
@@ -54,17 +54,17 @@ class Meal implements Item
     /**
      * @return array
      */
-    public function getCategoryId()
+    public function getCategory()
     {
-        return $this->categorieId;
+        return $this->category;
     }
 
     /**
      * @param array $categories
      */
-    public function setCategoryID($categoryId)
+    public function setCategory($category)
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
     }
 
     /**

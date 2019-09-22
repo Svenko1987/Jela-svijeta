@@ -1,12 +1,11 @@
 <?php
-include 'includes/application/Controler.php';
-include 'includes/application/Computer.php';
+include 'classes/application/DatabaseReader.php';
 
-include 'includes/data/Item.php';
-include 'includes/data/Tag.php';
-include 'includes/data/Category.php';
-include 'includes/data/Ingredient.php';
-include 'includes/data/Meal.php';
 
-include_once 'includes/database/DatabaseConnector.php';
-include_once 'includes/database/DatabaseReader.php';
+include 'classes/data/Item.php';
+include 'classes/data/Tag.php';
+include 'classes/data/Category.php';
+include 'classes/data/Ingredient.php';
+include 'classes/data/Meal.php';
+
+include_once 'includes/DatabaseConnector.php';
