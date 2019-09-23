@@ -28,8 +28,8 @@ class Inserts
             $description = $this->faker->sentence(10, true);
             $query = "INSERT INTO `meals` (`id`, `title`, `description`, `status`, `slug`) VALUES (NULL, '$title', '$description', 'created', '$slug')";
             $this->insertIntoMealsCategory($number ,$x);
-            $this->insertIntoJoinTable('meals_ingredient','ingredient', $x);
-            $this->insertIntoJoinTable('meals_tag','tag', $x);
+            $this->insertIntoJoinTable($number,'meals_ingredient','ingredient', $x);
+            $this->insertIntoJoinTable($number,'meals_tag','tag', $x);
             $this->insertIntoLanguages('eng', $title, $slug, 'title');
             $this->insertIntoLanguages('eng', $description, $slug, 'description');
             $this->insertIntoLanguages('ger', $title, $slug, 'title');
@@ -61,9 +61,9 @@ class Inserts
         mysqli_query($this->connection, $query);
     }
 
-    public function insertIntoJoinTable($table,$field, $mealId)
+    public function insertIntoJoinTable($number,$table,$field, $mealId)
     {
-        $random = rand(1, 50);
+        $random = rand(1, $number );
         $fieldID = $field . "_id";
         $query = "INSERT INTO `$table` (`id`, `meals_id`, `$fieldID`) VALUES (NULL, '$mealId', '$random')";
         mysqli_query($this->connection, $query);
@@ -84,10 +84,10 @@ class Inserts
     public function randomInsert($number)
     {
         for ($x = 1; $x <= $number; $x++) {
-            $random = rand(1, 20);
-            $this->insertIntoJoinTable('meals_ingredient','title', $random);
-            $random = rand(1, 20);
-            $this->insertIntoJoinTable('meals_tag','title', $random);
+            $random = rand(1, $number);
+            $this->insertIntoJoinTable($number,'meals_ingredient','title', $random);
+            $random = rand(1, $number);
+            $this->insertIntoJoinTable($number,'meals_tag','title', $random);
 
         }
     }

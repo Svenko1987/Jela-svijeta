@@ -1,14 +1,15 @@
 <?php
 
 
-class Category implements Item
+class Language implements Item
+
 {
-    public $id;
+    private $id;
     private $title;
     private $slug;
 
     /**
-     * Category constructor.
+     * Language constructor.
      * @param $id
      * @param $title
      * @param $slug
@@ -30,16 +31,14 @@ class Category implements Item
     {
         $this->slug = $slug;
     }
-
-
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id=$id;
     }
 
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title=$title;
     }
 
     public function getId()
@@ -51,4 +50,5 @@ class Category implements Item
     {
         return $this->title;
     }
+
 }

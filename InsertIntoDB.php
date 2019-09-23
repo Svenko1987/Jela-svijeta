@@ -11,4 +11,4 @@ $insert->insertIntoMeals($numberOfEntries);
 $insert->insertBasic($numberOfEntries,'category');
 $insert->insertBasic($numberOfEntries,'tag');
 $insert->insertBasic($numberOfEntries,'ingredient');
-$insert->randomInsert($numberOfEntries);
+$insert->randomInsert($numberOfEntries*2);

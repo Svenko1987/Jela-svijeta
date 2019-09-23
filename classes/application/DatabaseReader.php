@@ -19,9 +19,9 @@ class DatabaseReader
      * that are selected from database.
      * Condition for search is Tag
      */
-    public function getMealsForTag($tag, $language)
+    public function getMealsForTag($tagId, $language)
     {
-        $tagId=$this->getTagId($tag);
+
         $meals = array();
         $query = "SELECT * FROM meals LEFT JOIN meals_tag ON meals.id = meals_tag.meals_id WHERE meals_tag.tag_id ='$tagId' ";
         $response = mysqli_query($this->connection, $query);
@@ -42,9 +42,9 @@ class DatabaseReader
      * that are selected from database.
      * Condition for search is Category
      */
-    public function getMealsForCategory($category, $language)
+    public function getMealsForCategory($categoryId, $language)
     {
-        $categoryId=$this->getCategoryId($category);
+
         $meals = array();
         $query = "SELECT * FROM meals LEFT JOIN meals_category ON meals.id = meals_category.meals_id WHERE meals_category.category_id ='$categoryId' ";
         $response = mysqli_query($this->connection, $query);
@@ -59,15 +59,19 @@ class DatabaseReader
         }
         return $meals;
     }
-    public function getCategoryId($category){
+
+    public function getCategoryId($category)
+    {
         $query = "SELECT category.id FROM category WHERE  category.title='$category';";
         $response = mysqli_query($this->connection, $query);
         $row = mysqli_fetch_array($response);
         $categoryId = $row['id'];
         return $categoryId;
     }
-    public function getTagId($tag){
-        $query = "SELECT tag.id FROM tag WHERE  tag.slug='simple';";
+
+    public function getTagId($tag)
+    {
+        $query = "SELECT tag.id FROM tag WHERE  tag.slug='$tag';";
         $response = mysqli_query($this->connection, $query);
         $row = mysqli_fetch_assoc($response);
         $tagId = $row['id'];
@@ -140,5 +144,37 @@ class DatabaseReader
         $row = mysqli_fetch_array($response);
         $translation = $row['translation'];
         return $translation;
+    }
+
+    public function getLanguages()
+    {
+        $languages = array();
+        $query = "SELECT * FROM languages";
+        $response = mysqli_query($this->connection, $query);
+        while ($row = mysqli_fetch_assoc($response)) {
+            $language = new Language($row['id'], $row['title'], $row['slug']);
+            array_push($languages, $language);
+        }
+        return $languages;
+    }
+    public function getTags(){
+        $tags = array();
+        $query = "SELECT * FROM tag";
+        $response = mysqli_query($this->connection, $query);
+        while ($row = mysqli_fetch_assoc($response)) {
+            $tag = new Tag($row['id'], $row['title'], $row['slug']);
+            array_push($tags, $tag);
+        }
+        return $tags;
+    }
+    public function getCategorys(){
+        $categories = array();
+        $query = "SELECT * FROM category";
+        $response = mysqli_query($this->connection, $query);
+        while ($row = mysqli_fetch_assoc($response)) {
+            $category = new Tag($row['id'], $row['title'], $row['slug']);
+            array_push($categories, $category);
+        }
+        return $categories;
     }
 }
